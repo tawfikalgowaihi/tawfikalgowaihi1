@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توفيق الجويحي | الموقع والأعمال الهندسية</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #060913;
+            color: #f8fafc;
+            overflow-x: hidden;
+            line-height: 1.8;
+            padding-top: 65px;
+        }
+
+        /* --- شريط التنقل العلوي المتجاوب --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(6, 9, 19, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+
+        .nav-logo {
+            color: #38bdf8;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+            overflow-x: auto;
+            padding-bottom: 3px;
+        }
+
+        .nav-links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .install-badge {
+            background: #38bdf8;
+            color: #060913;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+
+        .install-badge:hover {
+            background: #0ea5e9;
+        }
+
+        /* --- الهيرو بفيديو خلفية متحرك وصورة دائرية --- */
+        .hero-section {
+            position: relative;
+            height: calc(100vh - 65px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            padding: 15px;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0.35;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(13, 27, 42, 0.85) 0%, #060913 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .profile-img-container {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #38bdf8;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+            margin-bottom: 15px;
+            animation: pulseProfile 2s infinite;
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes pulseProfile {
+            0% { box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(56, 189, 248, 0.8); }
+            100% { box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+        }
+
+        .hero-content h1 {
+            font-size: 2.2rem;
+            color: #38bdf8;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .btn-main {
+            display: inline-block;
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            color: #060913;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.8);
+        }
+
+        /* --- الأقسام العامة --- */
+        section {
+            padding: 40px 15px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: #38bdf8;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+            border-right: 4px solid #38bdf8;
+            padding-right: 12px;
+        }
+
+        .company-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.7));
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 20px;
+            padding: 25px 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out, border-color 0.3s;
+        }
+
+        .company-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .company-card:hover {
+            border-color: rgba(56, 189, 248, 0.6);
+        }
+
+        .card-text {
+            color: #cbd5e1;
+            font-size: 1.02rem;
+            line-height: 2.1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .stat-box {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 15px 10px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            color: #38bdf8;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="nav-logo">توفيق الجويحي</a>
+        <ul class="nav-links">
+            <li><a href="#about-section">نبذة</a></li>
+            <li><a href="#portfolio">الأعمال</a></li>
+            <li><a href="#excavation">المعايير</a></li>
+            <li><a href="#game-section">التحدي</a></li>
+            <li><a href="#contact">اتصل بنا</a></li>
+        </ul>
+        <button class="install-badge" id="installBtn">📱 تثبيت</button>
+    </nav>
+
+    <div id="welcomeModal">
+        <div class="modal-box">
+            <h3>مرحباً بكم</h3>
+            <button class="btn-main" id="enterSiteBtn">دخول الموقع</button>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <video autoplay muted loop playsinline preload="auto" class="hero-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-geometric-animation-of-futuristic-shapes-41829-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="profile-img-container">
+                <img src="https://i.ibb.co/vCDYFn0c/image.png" alt="توفيق الجويحي">
+            </div>
+            <h1>توفيق الجويحي</h1>
+            <p>أعمال هندسية ميدانية وحفر صرف صحي بمعايير متقدمة في حضرموت.</p>
+            <a href="#about-section" class="btn-main">استكشف الموقع</a>
+        </div>
+    </div>
+
+    <section id="about-section">
+        <div class="company-card">
+            <h2 class="section-title">نبذة عني</h2>
+            <p class="card-text">
+                أنا <strong>توفيق الجويحي</strong>. أسكن في قرية الخدود، مديرية وادي العين وحورة، محافظة حضرموت.<br><br>
+                أعمل في مجال الحفر الميداني ومجاري الصرف الصحي بخبرة وكفاءة هندسية عالية، أكرس جهدي لتقديم خدمات متينة وآمنة تلبي احتياجات المجتمع وتضمن أعلى معايير الجودة والاستقرار.
+            </p>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">+10</div>
+                    <div class="stat-label">أمتار عمق الحفر</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">دقة وأمان هندسي</div>
+                </div>
+            </div>
+        </div>
+  </section>
+      <!-- قسم معرض الأعمال (صور طبقات الأرض والحفر الميداني) -->
+    <section id="portfolio">
+        <div class="company-card">
+            <h2 class="section-title">معرض الأعمال</h2>
+            <p class="card-text" style="margin-bottom: 15px;">نماذج توضيحية لعمليات الحفر الميداني ودراسة طبقات الأرض والصخور:</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=500&q=80" alt="طبقات الأرض" class="portfolio-img">
+                    <div class="portfolio-info">
+                        <h4>فحص طبقات الأرض</h4>
+                        <p>تقييم التربة والصخور لضمان الصلابة</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=500&q=80" alt="حفر عميق" class="portfolio-img">
+                    <div class="portfolio-info">
+                        <h4>هندسة الحفر والعمق</h4>
+                        <p>تنفيذ متين وفق المعايير المطلوبة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم مقاسات الحفر -->
+    <section id="excavation">
+        <div class="company-card">
+            <h2 class="section-title">معايير وهندسة الحفر</h2>
+            <p class="card-text" style="margin-bottom: 15px;">نتبع خطوات هندسية مدروسة تضمن أمان واستقرار الحفرة على المدى الطويل:</p>
+            <ul class="specs-list">
+                <li><span>البداية (رأس الحفرة / الظفرة والصبه)</span> <span>قطر يبلغ <strong>2 متر</strong> وعمق <strong>1 متر</strong></span></li>
+                <li><span>العمق السفلي والتدرج</span> <span>يبدأ من قطر متر ويتعمق تدريجياً ليتسع إلى <strong>1.2 متر</strong> (متر وعشرين سم)</span></li>
+                <li><span>العمق الكلي</span> <span>الوصول لعمق <strong>10 أمتار أو أكثر</strong> بحسب صلابة وقوة التربة.</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- قسم تحدي الأبطال -->
+    <section id="game-section">
+        <div class="company-card game-container">
+            <h2 class="section-title" style="text-align: center; border-right: none;">🎮 تحدي الأبطال</h2>
+            <p class="card-text">اختر الإجابة الصحيحة للسؤال الهندسي التالي:</p>
+            <div class="game-box">
+                <p id="questionText" style="font-size: 1.02rem; color: #f8fafc; font-weight: bold;">كم يبلغ قطر رأس الحفرة في البداية (منطقة الصبه والظفرة)؟</p>
+                <div class="game-options">
+                    <button class="game-btn" onclick="checkAnswer(1)">1 متر</button>
+                    <button class="game-btn" onclick="checkAnswer(2)">2 متر</button>
+                    <button class="game-btn" onclick="checkAnswer(3)">1.5 متر</button>
+                </div>
+                <div id="gameMessage"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم اتصل بنا -->
+    <section id="contact">
+        <div class="company-card" style="text-align: center;">
+            <h2 class="section-title" style="text-align: right;">اتصل بنا</h2>
+            <p class="card-text" style="margin-bottom: 20px;">يسعدنا تواصلكم معنا للطلب والاستفسار عن الخدمات الهندسية.</p>
+            <div class="contact-links">
+                <a href="tel:+967784074871" class="contact-btn">📞 784074871</a>
+                <a href="tel:+967735010438" class="contact-btn">📞 735010438</a>
+                <a href="mailto:tawfikalgowaihi@gmail.com" class="contact-btn">📧 البريد الإلكتروني</a>
+                <a href="https://wa.me/967784074871" target="_blank" class="contact-btn" style="background:#25d366; color:#060913; border-color:#25d366;">💬 مراسلة واتساب</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- أدوات التحكم الثابتة في أسفل الشاشة (النقطة الصوتية يمين/يسار وأيقونة الواتساب بالمقابل) -->
+    <div id="soundToggle" class="sound-dot" title="تشغيل / إيقاف الصوت"></div>
+    <a href="https://wa.me/967784074871" target="_blank" class="whatsapp-float" title="مراسلة واتساب">💬</a>
+
+    <audio id="bgAudio" loop preload="auto">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    </audio>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 - توفيق الجويحي</p>
+    </footer>
+
+    <!-- ستايل التنسيق والتجاوب للموبايل -->
+    <style>
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        @media(min-width: 600px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .portfolio-item {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .portfolio-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .portfolio-info {
+            padding: 12px;
+            text-align: center;
+        }
+        .portfolio-info h4 {
+            color: #38bdf8;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .portfolio-info p {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+        .specs-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+        .specs-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+        @media(min-width: 500px) {
+            .specs-list li {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        .specs-list li span:first-child {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+        .game-container { text-align: center; }
+        .game-box {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px dashed #38bdf8;
+            padding: 20px 15px;
+            border-radius: 16px;
+            margin-top: 15px;
+        }
+        .game-options {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .game-btn {
+            background: #0f172a;
+            color: #38bdf8;
+            border: 1px solid #38bdf8;
+            padding: 8px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .game-btn:hover {
+            background: #38bdf8;
+            color: #060913;
+        }
+        #gameMessage {
+            margin-top: 12px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #38bdf8;
+        }
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        @media(min-width: 500px) {
+            .contact-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        .contact-btn {
+            background: #0f172a;
+            color: #f8fafc;
+            border: 1px solid #38bdf8;
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
+            text-align: center;
+        }
+        .contact-btn:hover {
+            background: #38bdf8;
+            color: #060913;
+        }
+        #welcomeModal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(6, 9, 19, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 999999;
+            display: flex; justify-content: center; align-items: center;
+            padding: 15px;
+        }
+        .modal-box {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #38bdf8;
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 340px; width: 100%;
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.4);
+        }
+        .modal-box h3 {
+            color: #38bdf8; margin-bottom: 20px; font-size: 1.8rem; font-weight: 800;
+        }
+
+        /* --- النقطة الصوتية الثابتة وأيقونة الواتساب في المقابل --- */
+        .sound-dot {
+            position: fixed; bottom: 20px; left: 20px;
+            width: 32px; height: 32px; background-color: #38bdf8;
+            border-radius: 50%; cursor: pointer; z-index: 99999;
+            box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.8);
+            animation: pulseGlow 1.6s infinite; border: 2px solid #fff;
+        }
+        .whatsapp-float {
+            position: fixed; bottom: 20px; right: 20px;
+            width: 42px; height: 42px; background-color: #25d366;
+            color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            font-size: 1.4rem; z-index: 99999; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.8); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(56, 189, 248, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+        }
+        .sound-dot.muted { background-color: #475569; animation: none; box-shadow: none; border-color: #64748b; }
+        footer {
+            text-align: center; padding: 30px 15px; color: #64748b; font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.05); margin-top: 30px;
+        }
+    </style>
+
+    <!-- البرمجة والتفاعل -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cards = document.querySelectorAll(".company-card");
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            }, { threshold: 0.1 });
+            cards.forEach(card => observer.observe(card));
+        });
+
+        const welcomeModal = document.getElementById('welcomeModal');
+        const enterSiteBtn = document.getElementById('enterSiteBtn');
+        const soundToggle = document.getElementById('soundToggle');
+        const bgAudio = document.getElementById('bgAudio');
+        const heroVideo = document.querySelector('.hero-video');
+
+        enterSiteBtn.addEventListener('click', () => {
+            bgAudio.play().then(() => {
+                soundToggle.classList.remove('muted');
+            }).catch(err => console.log(err));
+
+            heroVideo.play().catch(e => console.log(e));
+
+            welcomeModal.style.opacity = '0';
+            setTimeout(() => { welcomeModal.style.display = 'none'; }, 500);
+        });
+
+        soundToggle.addEventListener('click', () => {
+            if (bgAudio.paused) {
+                bgAudio.play().then(() => { soundToggle.classList.remove('muted'); });
+            } else {
+                bgAudio.pause();
+                soundToggle.classList.add('muted');
+            }
+        });
+
+        function checkAnswer(choice) {
+            const msg = document.getElementById('gameMessage');
+            if (choice === 2) {
+                msg.style.color = '#38bdf8';
+                msg.textContent = '🎉 إجابة صحيحة بطل! القطر في البداية هو 2 متر.';
+            } else {
+                msg.style.color = '#f43f5e';
+                msg.textContent = '❌ إجابة خاطئة، حاول مرة أخرى! تذكر أن البداية 2 متر.';
+            }
+        }
+
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    console.log('تم تثبيت التطبيق بنجاح');
+                }
+                deferredPrompt = null;
+            } else {
+                alert('لتثبيت التطبيق على هاتفك، افتح خيارات المتصفح (النقاط الثلاث بالأعلى) واضغط على "إضافة إلى الشاشة الرئيسية" (Add to Home screen).');
+            }
+        });
+    </script>
+</body>
+</html>
